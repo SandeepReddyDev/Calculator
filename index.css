@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+:root {
+    --dark-bg: #1a1a1a;
+    --dark-button: #3d3d3d;
+    --dark-text: #ffffff;
+    --dark-operator: #6ec1e4;
+
+    --light-bg: #fbcda8;
+    --light-button: #eae7e3;
+    --light-text: #000000;
+    --light-operator: #ff9800;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--dark-bg);
+    transition: background 0.3s ease-in-out;
+    font-family: Arial, sans-serif;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dark-bg);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 300px;
+    transition: background 0.3s ease-in-out;
+}
+
+.theme-toggle {
+    text-align: right;
+    cursor: pointer;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--dark-text);
+}
+
+#display {
+    width: 100%;
+    height: 50px;
+    font-size: 25px;
+    text-align: right;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--dark-button);
+    color: var(--dark-text);
+    margin-bottom: 10px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--dark-button);
+    color: var(--dark-text);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.operator {
+    background-color: var(--dark-operator);
+}
+
+.equal {
+    background-color: var(--dark-operator);
+    grid-column: span 2;
+}
+
+.light-mode {
+    background-color: var(--light-bg);
+}
+
+.light-mode .calculator {
+    background-color: var(--light-bg);
+}
+
+.light-mode .theme-toggle {
+    color: var(--light-text);
+}
+
+.light-mode #display {
+    background-color: var(--light-button);
+    color: var(--light-text);
+}
+
+.light-mode button {
+    background-color: var(--light-button);
+    color: var(--light-text);
+}
+
+.light-mode .operator,
+.light-mode .equal {
+    background-color: var(--light-operator);
+}
+.falling-numbers-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.falling-number {
+    position: absolute;
+    font-size: 50px;
+    color: rgba(255, 255, 255, 0.6);
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(-100%);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Light mode colors */
+.light-mode .falling-number {
+    color: rgba(0, 0, 0, 0.6);
+}
